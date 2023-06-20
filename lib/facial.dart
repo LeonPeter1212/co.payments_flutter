@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
-import 'facial.dart';
 import 'first.dart';
+import 'create_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,22 +13,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Create Password',
+      title: 'Verify Your Identity',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: BiometricAccessPage(),
+      home: FacialPage(),
     );
   }
 }
 
-class BiometricAccessPage extends StatefulWidget {
+class FacialPage extends StatefulWidget {
   @override
-  _BiometricAccessPageState createState() => _BiometricAccessPageState();
+  _FacialPageState createState() => _FacialPageState();
 }
 
-class _BiometricAccessPageState extends State<BiometricAccessPage> {
+class _FacialPageState extends State<FacialPage> {
   final LocalAuthentication localAuth = LocalAuthentication();
   bool isBiometricAvailable = false;
 
@@ -61,12 +61,6 @@ class _BiometricAccessPageState extends State<BiometricAccessPage> {
 
   void doThisLater() {
     // Action to be performed when "I'll do this later" button is pressed
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => FacialPage(),
-      ),
-    );
   }
 
   @override
@@ -107,22 +101,22 @@ class _BiometricAccessPageState extends State<BiometricAccessPage> {
         child: Column(
           children: [
             const Text(
-              'Enable biometric Access',
+              'Let’s verify your identity',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF1D3A70),
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
             ),
             const SizedBox(height: 16),
             const Text(
-              'Login quickly and securely with the fingerprint stored on this device',
+              'We’re required by law to verify your identity before we can use your money',
               style: TextStyle(
                 fontSize: 18,
                 color: Color(0xFF6B7280),
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -132,58 +126,46 @@ class _BiometricAccessPageState extends State<BiometricAccessPage> {
                   children: [
                     const SizedBox(height: 24),
                     Image.asset(
-                      'assets/images/fingerprint.png', // Replace with the actual image path
-                      width: 140,
-                      height: 140,
+                      'assets/images/facial.png', // Replace with the actual image path
+                      width: 300,
+                      // height: 140,
                     ),
                   ],
                 ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ElevatedButton(
-                  onPressed:
-                      isBiometricAvailable ? enableBiometricAccess : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1D3A70),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                  ),
-                  child: const Text(
-                    'Enable biometric access',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                TextButton(
-                  onPressed: doThisLater,
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    padding: const EdgeInsets.all(16),
-                  ),
-                  child: const Text(
-                    "I'll do this later",
-                    style: TextStyle(
-                      color: Color(0xFF1DAB87),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: _submit,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF1D3A70),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.all(24),
+          ),
+          child: const Text(
+            'Verify Identity',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _submit() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CreateCardPage(),
       ),
     );
   }

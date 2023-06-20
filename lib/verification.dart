@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'biometric.dart';
+import 'create_password.dart';
+import 'first.dart';
 
 class VerificationPage extends StatefulWidget {
   @override
@@ -20,7 +21,12 @@ class _VerificationPageState extends State<VerificationPage> {
           padding: const EdgeInsets.all(4.0),
           child: TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FirstPage(),
+                ),
+              );
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
@@ -32,7 +38,7 @@ class _VerificationPageState extends State<VerificationPage> {
               ),
             ),
             child: Image.asset(
-              '../assets/images/back.png',
+              'assets/images/back.png',
             ),
           ),
         ),
@@ -44,7 +50,6 @@ class _VerificationPageState extends State<VerificationPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 30),
               const Text(
                 'Verify it’s you',
                 style: TextStyle(
@@ -88,7 +93,11 @@ class _VerificationPageState extends State<VerificationPage> {
                 alignment: Alignment.centerLeft,
                 child: TextButton(
                   onPressed: () {
-                    // Action to be performed when the 'Resend Code' link is pressed
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Verification code successfully sent!'),
+                      ),
+                    );
                   },
                   child: const Text(
                     'Resend Code',
@@ -119,7 +128,7 @@ class _VerificationPageState extends State<VerificationPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 140),
+              const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -129,7 +138,7 @@ class _VerificationPageState extends State<VerificationPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(16),
                   ),
                   child: const Text(
                     'Confirm',
@@ -238,7 +247,7 @@ class _VerificationPageState extends State<VerificationPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BiometricAccessPage(),
+        builder: (context) => CreatePasswordPage(),
       ),
     );
   }

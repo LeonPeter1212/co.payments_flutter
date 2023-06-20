@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Co.Payments',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      initialRoute: '/pincode', // Set the initial route
+      initialRoute: '/first', // Set the initial route
       routes: routes, // Define the routes// Display the SplashScreen initially
     );
   }

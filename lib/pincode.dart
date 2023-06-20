@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'biometric.dart';
+import 'first.dart';
 
 class PinCodePage extends StatefulWidget {
   @override
@@ -20,7 +21,12 @@ class _PinCodePageState extends State<PinCodePage> {
           padding: const EdgeInsets.all(4.0),
           child: TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FirstPage(),
+                ),
+              );
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
@@ -32,7 +38,7 @@ class _PinCodePageState extends State<PinCodePage> {
               ),
             ),
             child: Image.asset(
-              '../assets/images/back.png',
+              'assets/images/back.png',
             ),
           ),
         ),
@@ -44,7 +50,6 @@ class _PinCodePageState extends State<PinCodePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 30),
               const Text(
                 'Set your PIN code',
                 style: TextStyle(
@@ -107,17 +112,17 @@ class _PinCodePageState extends State<PinCodePage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 140),
+              const SizedBox(height: 60),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _verificationCodeChecker,
+                  onPressed: _pincodeCodeChecker,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1D3A70),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(16),
                   ),
                   child: const Text(
                     'Create PIN',
@@ -222,7 +227,7 @@ class _PinCodePageState extends State<PinCodePage> {
     );
   }
 
-  void _verificationCodeChecker() {
+  void _pincodeCodeChecker() {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -249,7 +254,7 @@ class NumberButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 80, // Adjust the width as desired
-      height: 80, // Adjust the height as desired
+      height: 60, // Adjust the height as desired
       margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       child: TextButton(
         onPressed: onPressed,

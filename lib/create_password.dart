@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'first.dart';
+import 'signin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Create Password',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: CreatePasswordPage(),
@@ -73,7 +74,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
               ),
             ),
             child: Image.asset(
-              '../assets/images/back.png',
+              'assets/images/back.png',
             ),
           ),
         ),
@@ -85,7 +86,6 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 30),
               const Text(
                 'Create New Password',
                 style: TextStyle(
@@ -111,7 +111,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
                     color: Color(0xFF9CA3AF),
                     fontWeight: FontWeight.w400,
                   ),
-                  contentPadding: const EdgeInsets.all(24),
+                  contentPadding: const EdgeInsets.all(16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(
@@ -157,7 +157,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
                     color: Color(0xFF9CA3AF),
                     fontWeight: FontWeight.w400,
                   ),
-                  contentPadding: const EdgeInsets.all(24),
+                  contentPadding: const EdgeInsets.all(16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(
@@ -212,7 +212,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(16),
             ),
             child: const Text(
               'Create new password',
@@ -233,6 +233,12 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
       if (_passwordController.text == _confirmPasswordController.text) {
         // Passwords match, proceed with form submission
         // Add your sign in logic here
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SignInPage(),
+          ),
+        );
       } else {
         // Passwords do not match, display an error message
         ScaffoldMessenger.of(context).showSnackBar(

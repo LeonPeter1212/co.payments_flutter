@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Get Started',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: const SplashScreen(),
@@ -30,65 +30,61 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool _isLoading = true;
-
   @override
   void initState() {
     super.initState();
-    // Simulate loading time with a delay
-    Future.delayed(const Duration(seconds: 2), () {
-      setState(() {
-        _isLoading = false; // Update the isLoading flag to false
-      });
-    });
+    navigateToNextScreen();
+  }
+
+  void navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 2));
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const FirstPage()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return Scaffold(
-        backgroundColor: const Color(0xFF1DAB87),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment:
-                CrossAxisAlignment.center, // Adjusted crossAxisAlignment
-            children: [
-              Image.asset(
-                '../assets/images/logo.png',
-                width: 200,
-                height: 100,
-              ),
-              const SizedBox(height: 6),
-              RichText(
-                text: const TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Co',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                      ),
+    return Scaffold(
+      backgroundColor: const Color(0xFF1DAB87),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/logo.png',
+              width: 200,
+              height: 100,
+            ),
+            const SizedBox(height: 6),
+            RichText(
+              text: const TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Co',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
                     ),
-                    TextSpan(
-                      text: '.Payment',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                      ),
+                  ),
+                  TextSpan(
+                    text: '.Payment',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
-    } else {
-      return const FirstPage(); // Transition to the home page
-    }
+      ),
+    );
   }
 }
 
@@ -102,6 +98,21 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   final PageController _pageController = PageController();
   double _currentPage = 0;
+
+  List<Map<String, String>> slidePages = [
+    {
+      'image': 'assets/images/slide1.png',
+      'title': 'Finance app the safest and most trusted',
+      'description':
+          'Your finance work starts here. We are here to help you track and deal with speeding up your transactions.',
+    },
+    {
+      'image': 'assets/images/slide2.png',
+      'title': 'The fastest transaction process only here',
+      'description':
+          'Get easy to pay all your bills with just a few steps. Paying your bills become fast and efficient.',
+    },
+  ];
 
   @override
   void dispose() {
@@ -130,6 +141,7 @@ class _FirstPageState extends State<FirstPage> {
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
             ),
           ),
@@ -144,83 +156,30 @@ class _FirstPageState extends State<FirstPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: PageView(
+              child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: (int page) {
                   setState(() {
                     _currentPage = page.toDouble();
                   });
                 },
-                children: [
-                  Container(
-                    // First Slide
+                itemCount: slidePages.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
                     color: Colors.white,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          '../assets/images/slide1.png',
-                          width: 300,
-                          height: 400,
+                          slidePages[index]['image']!,
+                          // width: 300,
+                          height: 300,
                         ),
                         const SizedBox(height: 16),
                         Center(
-                          child: RichText(
-                            text: const TextSpan(
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: 'Finance app ',
-                                  style: TextStyle(
-                                    color: Color(0xFF1D3A70),
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'the safest and most ',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'trusted',
-                                  style: TextStyle(
-                                    color: Color(0xFF1D3A70),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Your finance work starts here. Our here to help you track and deal with speeding up your transactions.',
-                          textAlign: TextAlign.center,
-                          style:
-                              TextStyle(color: Color(0xFF6B7280), fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // Second Slide
-                    color: Colors.white,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          '../assets/images/slide2.png',
-                          width: 300,
-                          height: 400,
-                        ),
-                        const SizedBox(height: 16),
-                        const Center(
                           child: Text(
-                            'The fastest transaction process only here',
-                            style: TextStyle(
+                            slidePages[index]['title']!,
+                            style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF1D3A70),
@@ -229,20 +188,22 @@ class _FirstPageState extends State<FirstPage> {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          'Get easy to pay all your bills with just a few steps. Paying your bills become fast and efficient.',
+                        Text(
+                          slidePages[index]['description']!,
                           textAlign: TextAlign.center,
-                          style:
-                              TextStyle(color: Color(0xFF6B7280), fontSize: 16),
+                          style: const TextStyle(
+                            color: Color(0xFF6B7280),
+                            fontSize: 16,
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
             DotsIndicator(
-              dotsCount: 2,
+              dotsCount: slidePages.length,
               position: _currentPage,
               decorator: DotsDecorator(
                 size: const Size.square(6.0),
@@ -256,33 +217,44 @@ class _FirstPageState extends State<FirstPage> {
               ),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                // Action to be performed when the 'Get Started' button is pressed
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignInPage(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF1D3A70),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                padding: const EdgeInsets.all(24),
-              ),
-              child: const Text(
-                'Get Started',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () {
+            if (_currentPage < slidePages.length - 1) {
+              // If not on the last slide, go to the next slide
+              _pageController.nextPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.ease,
+              );
+            } else {
+              // If on the last slide, navigate to the SignInPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SignInPage(),
+                ),
+              );
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF1D3A70),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.all(16),
+          ),
+          child: Text(
+            _currentPage < slidePages.length - 1 ? 'Next' : 'Get Started',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
       ),
     );

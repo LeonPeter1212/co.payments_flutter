@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sign Up',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: SignUpPage(),
@@ -71,7 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
               // padding: const EdgeInsets.all(20),
             ),
             child: Image.asset(
-              '../assets/images/back.png',
+              'assets/images/back.png',
             ),
           ),
         ),
@@ -83,7 +83,6 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 30),
               RichText(
                 textAlign: TextAlign.left,
                 text: const TextSpan(
@@ -119,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: Color(0xFF9CA3AF),
                     fontWeight: FontWeight.w400,
                   ),
-                  contentPadding: const EdgeInsets.all(24),
+                  contentPadding: const EdgeInsets.all(16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(
@@ -158,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: Color(0xFF9CA3AF),
                     fontWeight: FontWeight.w400,
                   ),
-                  contentPadding: const EdgeInsets.all(24),
+                  contentPadding: const EdgeInsets.all(16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(
@@ -185,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
                   }
-                  
+
                   bool isValidEmail = EmailValidator.validate(value);
                   if (!isValidEmail) {
                     // Invalid email format
@@ -205,7 +204,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     color: Color(0xFF9CA3AF),
                     fontWeight: FontWeight.w400,
                   ),
-                  contentPadding: const EdgeInsets.all(24),
+                  contentPadding: const EdgeInsets.all(16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(
@@ -253,7 +252,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(16),
                   ),
                   child: const Text(
                     'Sign Up',
@@ -265,13 +264,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 34),
+              const SizedBox(height: 24),
               const Row(
                 children: [
                   Expanded(
                     child: Image(
                       image: AssetImage(
-                        '../assets/images/line-left.png',
+                        'assets/images/line-left.png',
                       ),
                     ),
                   ),
@@ -287,13 +286,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   Expanded(
                     child: Image(
                       image: AssetImage(
-                        '../assets/images/line-right.png',
+                        'assets/images/line-right.png',
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 34),
+              const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -309,11 +308,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             color: Color(0xFFE5E7EB),
                           ),
                         ),
-                        padding: const EdgeInsets.all(24),
+                        padding: const EdgeInsets.all(16),
                       ),
                       child: const Image(
                         image: AssetImage(
-                          '../assets/images/search.png',
+                          'assets/images/search.png',
                         ),
                         height: 30,
                         width: 30,
@@ -333,11 +332,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             color: Color(0xFFE5E7EB),
                           ),
                         ),
-                        padding: const EdgeInsets.all(24),
+                        padding: const EdgeInsets.all(16),
                       ),
                       child: const Image(
                         image: AssetImage(
-                          '../assets/images/apple.png',
+                          'assets/images/apple.png',
                         ),
                         height: 30,
                         width: 30,
@@ -403,5 +402,4 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     }
   }
-
 }

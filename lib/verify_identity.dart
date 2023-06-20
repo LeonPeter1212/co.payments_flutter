@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'create_password.dart';
+import 'verification.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Verify Identity',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: VerifyIdentityPage(),
@@ -49,7 +49,7 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
             children: [
               const SizedBox(height: 30),
               Image.asset(
-                '../assets/images/verify.png',
+                'assets/images/verify.png',
                 height: 100,
               ),
               const SizedBox(height: 30),
@@ -93,7 +93,7 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
               ),
               const SizedBox(height: 24),
               Container(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 243, 243, 243),
                   borderRadius: BorderRadius.circular(16),
@@ -142,16 +142,14 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
                         ],
                       ),
                     ),
-                    Image.network(
-                      '../assets/images/email.png',
+                    Image.asset(
+                      'assets/images/email.png',
                       width: 24,
                       height: 24,
                     ),
                   ],
                 ),
               ),
-
-
             ],
           ),
         ),
@@ -168,7 +166,7 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(16),
             ),
             child: const Text(
               'Continue',
@@ -191,7 +189,7 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => CreatePasswordPage(),
+          builder: (context) => VerificationPage(),
         ),
       );
     }

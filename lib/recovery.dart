@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Recover Password',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
       home: RecoveryPage(),
@@ -50,7 +50,7 @@ class _RecoveryPageState extends State<RecoveryPage> {
             children: [
               const SizedBox(height: 30),
               Image.asset(
-                '../assets/images/recovery.png',
+                'assets/images/recovery.png',
                 height: 100,
               ),
               const SizedBox(height: 30),
@@ -78,7 +78,7 @@ class _RecoveryPageState extends State<RecoveryPage> {
                     color: Color(0xFF9CA3AF),
                     fontWeight: FontWeight.w400,
                   ),
-                  contentPadding: const EdgeInsets.all(24),
+                  contentPadding: const EdgeInsets.all(16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(
@@ -112,7 +112,7 @@ class _RecoveryPageState extends State<RecoveryPage> {
                     // Invalid email format
                     return 'Please enter a valid email address';
                   }
-                  
+
                   return null;
                 },
               ),
@@ -132,7 +132,7 @@ class _RecoveryPageState extends State<RecoveryPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(16),
             ),
             child: const Text(
               'Send recovery email',
@@ -151,7 +151,7 @@ class _RecoveryPageState extends State<RecoveryPage> {
   void _recoverPassword() {
     if (_formKey.currentState!.validate()) {
       // Add your sign in logic here
-      
+
       Navigator.push(
         context,
         MaterialPageRoute(
