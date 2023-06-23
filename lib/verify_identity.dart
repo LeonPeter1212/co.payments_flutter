@@ -95,7 +95,7 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 243, 243, 243),
+                  color: const Color.fromARGB(255, 243, 243, 243),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Row(

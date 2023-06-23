@@ -18,7 +18,7 @@ class _VerificationPageState extends State<VerificationPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               Navigator.push(
@@ -67,7 +67,7 @@ class _VerificationPageState extends State<VerificationPage> {
                   ),
                   children: [
                     TextSpan(
-                      text: 'We send a code to ( ',
+                      text: 'We sent a code to ( ',
                       style: TextStyle(
                         color: Color(0xFF6B7280),
                       ),
@@ -88,7 +88,7 @@ class _VerificationPageState extends State<VerificationPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
               Align(
                 alignment: Alignment.centerLeft,
                 child: TextButton(
@@ -109,7 +109,7 @@ class _VerificationPageState extends State<VerificationPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
               Row(
                 children: [
                   Expanded(
@@ -128,114 +128,117 @@ class _VerificationPageState extends State<VerificationPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _verificationCodeChecker,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1D3A70),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+              const SizedBox(height: 16),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _verificationCodeChecker,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF1D3A70),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          padding: const EdgeInsets.all(16),
+                        ),
+                        child: const Text(
+                          'Confirm',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
-                    padding: const EdgeInsets.all(16),
-                  ),
-                  child: const Text(
-                    'Confirm',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        for (int i = 1; i <= 3; i++)
+                          Expanded(
+                            child: NumberButton(
+                              number: i,
+                              onPressed: () {
+                                setState(() {
+                                  enteredDigits.add(i);
+                                });
+                              },
+                            ),
+                          ),
+                      ],
                     ),
-                  ),
+                    Row(
+                      children: [
+                        for (int i = 4; i <= 6; i++)
+                          Expanded(
+                            child: NumberButton(
+                              number: i,
+                              onPressed: () {
+                                setState(() {
+                                  enteredDigits.add(i);
+                                });
+                              },
+                            ),
+                          ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        for (int i = 7; i <= 9; i++)
+                          Expanded(
+                            child: NumberButton(
+                              number: i,
+                              onPressed: () {
+                                setState(() {
+                                  enteredDigits.add(i);
+                                });
+                              },
+                            ),
+                          ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: NumberButton(
+                            text: '*',
+                            onPressed: () {
+                              setState(() {
+                                enteredDigits.add(0);
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: NumberButton(
+                            number: 0,
+                            onPressed: () {
+                              setState(() {
+                                enteredDigits.add(0);
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: NumberButton(
+                            icon: Icons.backspace,
+                            onPressed: () {
+                              setState(() {
+                                if (enteredDigits.isNotEmpty) {
+                                  enteredDigits.removeLast();
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 30),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      for (int i = 1; i <= 3; i++)
-                        Expanded(
-                          child: NumberButton(
-                            number: i,
-                            onPressed: () {
-                              setState(() {
-                                enteredDigits.add(i);
-                              });
-                            },
-                          ),
-                        ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      for (int i = 4; i <= 6; i++)
-                        Expanded(
-                          child: NumberButton(
-                            number: i,
-                            onPressed: () {
-                              setState(() {
-                                enteredDigits.add(i);
-                              });
-                            },
-                          ),
-                        ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      for (int i = 7; i <= 9; i++)
-                        Expanded(
-                          child: NumberButton(
-                            number: i,
-                            onPressed: () {
-                              setState(() {
-                                enteredDigits.add(i);
-                              });
-                            },
-                          ),
-                        ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: NumberButton(
-                          text: '*',
-                          onPressed: () {
-                            setState(() {
-                              enteredDigits.add(0);
-                            });
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: NumberButton(
-                          number: 0,
-                          onPressed: () {
-                            setState(() {
-                              enteredDigits.add(0);
-                            });
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: NumberButton(
-                          icon: Icons.backspace,
-                          onPressed: () {
-                            setState(() {
-                              if (enteredDigits.isNotEmpty) {
-                                enteredDigits.removeLast();
-                              }
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              )
             ],
           ),
         ),

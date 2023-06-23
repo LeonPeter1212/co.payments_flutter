@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/home1.dart';
 import 'first.dart';
 
 void main() {
@@ -21,6 +22,100 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class ColorSelectorWidget extends StatefulWidget {
+  final Function(int) onColorChanged;
+
+  const ColorSelectorWidget({required this.onColorChanged});
+
+  @override
+  _ColorSelectorWidgetState createState() => _ColorSelectorWidgetState();
+}
+
+int selectedColorIndex = 1; // Default selected color index
+
+List<List<Color>> colorPairs = [
+  [const Color(0xFF1D3A70), const Color(0xFFFFB9AA)],
+  [const Color(0xFF1D3A70), const Color(0xFF1DAB87)],
+  [const Color(0xFF1DAB87), const Color(0xFFFFB9AA)],
+];
+
+class _ColorSelectorWidgetState extends State<ColorSelectorWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 40,
+      height: 129,
+      padding: const EdgeInsets.all(8),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          bottomLeft: Radius.circular(12),
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          for (int index = 0; index < colorPairs.length; index++)
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedColorIndex = index;
+                });
+
+                widget.onColorChanged(selectedColorIndex);
+              },
+              child: Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.15),
+                      offset: Offset(1.95, 1.95),
+                      blurRadius: 2.6,
+                    ),
+                  ],
+                  color: colorPairs[index][0],
+                ),
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          width: 24,
+                          height: 12,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.vertical(
+                                bottom: Radius.circular(50)),
+                            color: colorPairs[index][1],
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (index == selectedColorIndex)
+                      Positioned.fill(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 2),
+                          ),
+                          child: const Icon(Icons.check,
+                              color: Colors.white, size: 16),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
 class Country {
   final String name;
   final String flagUrl;
@@ -34,6 +129,89 @@ class NewCardPage extends StatefulWidget {
 }
 
 class _NewCardPageState extends State<NewCardPage> {
+  void updateCardColor(int index) {
+    setState(() {
+      selectedColorIndex = index;
+    });
+  }
+
+  // Function to show an alert message if save is pressed
+  void _showSelectCountryAlert() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white, // Set the background color to white
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(16),
+              topRight: Radius.circular(16),
+              bottomLeft: Radius.circular(16),
+              bottomRight: Radius.circular(16),
+            ),
+          ),
+          title: const Text(
+            'Great! your card is ready🙂',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1D3A70),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          content: const Text(
+            'Now you can shop, transmit and transfer conveniently',
+            style: TextStyle(
+              fontSize: 18,
+              color: Color(0xFF6B7280),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          contentPadding: const EdgeInsets.fromLTRB(
+            16,
+            16,
+            16,
+            0,
+          ), // Adjust content padding as needed
+          actionsPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 24,
+          ), // Adjust actions padding as needed
+          actions: [
+            SizedBox(
+              width: double.infinity, // Make the button span the full width
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeOnePage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: const Color(0xFF1D3A70),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                ),
+                child: const Text(
+                  'Ok, I’m ready!',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   // Variables for country selection
   String selectedCountry = '';
   List<Country> countries = [
@@ -197,7 +375,7 @@ class _NewCardPageState extends State<NewCardPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed
@@ -227,105 +405,129 @@ class _NewCardPageState extends State<NewCardPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFFF3F4F6),
-              ),
-              padding: const EdgeInsets.all(34),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 330),
-                child: Container(
-                  height: 190,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1D3A70),
-                    borderRadius: BorderRadius.circular(16),
+            Stack(
+              children: [
+                // Bottom widget
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFF3F4F6),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF1D3A70),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                          ),
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/sec1bg.png'),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              'assets/images/chip.png',
-                              height: 24,
-                            ),
-                            const SizedBox(height: 34),
-                            const Text(
-                              '2564   8546   8421   1121',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                  padding: const EdgeInsets.all(34),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 330),
+                    child: Container(
+                      height: 190,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1D3A70),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
+                            decoration: BoxDecoration(
+                              color: colorPairs[selectedColorIndex][0],
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(16),
+                                topRight: Radius.circular(16),
+                              ),
+                              image: const DecorationImage(
+                                image: AssetImage('assets/images/sec1bg.png'),
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                          decoration: const BoxDecoration(
-                            color: Color(0xFF1DAB87),
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(16),
-                              bottomRight: Radius.circular(16),
-                            ),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                   children: [
-                                    Text(
-                                      'Tommy Jason',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                    Image.asset(
+                                      'assets/images/chip.png',
+                                      height: 24,
                                     ),
-                                    SizedBox(height: 4),
-                                    Text(
-                                      '13/24',
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromRGBO(255, 255, 255, .6),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                    const SizedBox(width: 8),
+                                    Image.asset(
+                                      'assets/images/NFC.png',
+                                      height: 24,
                                     ),
                                   ],
                                 ),
-                              ),
-                              Image.asset(
-                                'assets/images/mastercard_icon.png',
-                                height: 26,
-                              ),
-                            ],
+                                const SizedBox(height: 34),
+                                const Text(
+                                  '0000   0000   0000   0000',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
+                          Expanded(
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                              decoration: BoxDecoration(
+                                color: colorPairs[selectedColorIndex][1],
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(16),
+                                  bottomRight: Radius.circular(16),
+                                ),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Your Name',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(height: 4),
+                                        Text(
+                                          '00/00',
+                                          style: TextStyle(
+                                            color: Color.fromRGBO(
+                                                255, 255, 255, .6),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Image.asset(
+                                    'assets/images/mastercard_icon.png',
+                                    height: 26,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+                // Top widget
+                Positioned(
+                  top: 64.5,
+                  right: 0,
+                  child: ColorSelectorWidget(
+                    onColorChanged: updateCardColor,
+                  ), // Integrated ColorSelectorWidget here
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             Padding(
@@ -543,8 +745,8 @@ class _NewCardPageState extends State<NewCardPage> {
                               style: TextStyle(
                                 fontSize: 18,
                                 color: selectedCountry.isNotEmpty
-                                    ? Color(0xFF1D3A70)
-                                    : Color(0xFF9CA3AF),
+                                    ? const Color(0xFF1D3A70)
+                                    : const Color(0xFF9CA3AF),
                                 fontWeight: selectedCountry.isNotEmpty
                                     ? FontWeight.w500
                                     : FontWeight.normal,
@@ -570,7 +772,9 @@ class _NewCardPageState extends State<NewCardPage> {
         child: SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              _showSelectCountryAlert();
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF1D3A70),
               shape: RoundedRectangleBorder(

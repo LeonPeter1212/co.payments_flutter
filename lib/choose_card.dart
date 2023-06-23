@@ -18,7 +18,7 @@ class ChooseCardPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed
@@ -132,7 +132,7 @@ class ChooseCardPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 16),
-              
+
               // Second card
               GestureDetector(
                 onTap: () {
@@ -170,9 +170,18 @@ class ChooseCardPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                'assets/images/chip.png',
-                                height: 24,
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/chip.png',
+                                    height: 24,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Image.asset(
+                                    'assets/images/NFC.png',
+                                    height: 24,
+                                  ),
+                                ],
                               ),
                               const SizedBox(height: 34),
                               const Text(
@@ -238,7 +247,7 @@ class ChooseCardPage extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 16),
 
               // Third card
@@ -344,7 +353,6 @@ class ChooseCardPage extends StatelessWidget {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

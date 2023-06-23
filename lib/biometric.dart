@@ -76,7 +76,7 @@ class _BiometricAccessPageState extends State<BiometricAccessPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed

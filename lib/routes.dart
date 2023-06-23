@@ -14,6 +14,8 @@ import 'facial.dart';
 import 'choose_card.dart';
 import 'new_card.dart';
 import 'create_card.dart';
+import 'home1.dart';
+import 'testView.dart';
 
 final Map<String, WidgetBuilder> routes = {
   '/first': (BuildContext context) => const FirstPage(),
@@ -31,4 +33,6 @@ final Map<String, WidgetBuilder> routes = {
   '/choose_card': (BuildContext context) => ChooseCardPage(),
   '/new_card': (BuildContext context) => NewCardPage(),
   '/create_card': (BuildContext context) => const CreateCardPage(),
+  '/home1': (BuildContext context) => HomeOnePage(),
+  '/testView': (BuildContext context) => ChatPage(),
 };

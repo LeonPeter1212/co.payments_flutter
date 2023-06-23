@@ -53,7 +53,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed
@@ -96,7 +96,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Please, enter a new password below different from the previous password',
+                'Please enter a new password below different from the previous password',
                 style: TextStyle(
                   fontSize: 18,
                   color: Color(0xFF6B7280),

@@ -30,7 +30,6 @@ class CreateCardPage extends StatefulWidget {
 
 class _FirstPageState extends State<CreateCardPage> {
   final PageController _pageController = PageController();
-  double _currentPage = 0;
 
   List<Map<String, String>> slidePages = [
     {

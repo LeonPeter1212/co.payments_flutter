@@ -18,7 +18,7 @@ class _PinCodePageState extends State<PinCodePage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               Navigator.push(
@@ -75,7 +75,7 @@ class _PinCodePageState extends State<PinCodePage> {
                       children: List.generate(
                         5,
                         (index) {
-                          final isCurrentField = enteredDigits.length == index;
+                          // final isCurrentField = enteredDigits.length == index;
                           final isFilledField = enteredDigits.length > index;
 
                           return Expanded(

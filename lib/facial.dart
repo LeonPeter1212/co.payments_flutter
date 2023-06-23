@@ -70,7 +70,7 @@ class _FacialPageState extends State<FacialPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed
@@ -165,7 +165,7 @@ class _FacialPageState extends State<FacialPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CreateCardPage(),
+        builder: (context) => const CreateCardPage(),
       ),
     );
   }
