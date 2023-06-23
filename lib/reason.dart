@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'first.dart';
 import 'pincode.dart';
 
 void main() {
@@ -28,13 +27,31 @@ class ReasonPage extends StatefulWidget {
 }
 
 class _ReasonPageState extends State<ReasonPage> {
-  final List<String> options = [
-    'Spend or save daily',
-    'Fast my transactions',
-    'Payments to friends',
-    'Online payments',
-    'Spend while travelling',
-    'Your financial assets',
+  final List<Map<String, dynamic>> options = <Map<String, dynamic>>[
+    {
+      'text': 'Spend or save daily',
+      'icon': Icons.change_circle_outlined,
+    },
+    {
+      'text': 'Fast my transactions',
+      'icon': Icons.flash_on_outlined,
+    },
+    {
+      'text': 'Payments to friends',
+      'icon': Icons.group_outlined,
+    },
+    {
+      'text': 'Online payments',
+      'icon': Icons.payment,
+    },
+    {
+      'text': 'Spend while travelling',
+      'icon': Icons.toll,
+    },
+    {
+      'text': 'Your financial assets',
+      'icon': Icons.shopping_cart_checkout_outlined,
+    },
   ];
 
   List<bool> selectedOptions = List.filled(6, false);
@@ -43,18 +60,13 @@ class _ReasonPageState extends State<ReasonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FirstPage(),
-                ),
-              );
+              Navigator.of(context).pop();
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
@@ -72,11 +84,12 @@ class _ReasonPageState extends State<ReasonPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 30),
             const Text(
               'Main reason for using Smartpay',
               style: TextStyle(
@@ -107,9 +120,12 @@ class _ReasonPageState extends State<ReasonPage> {
                       });
                     },
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Container(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: selectedOptions[index]
                               ? const Color(0xFF1DAB87)
@@ -126,19 +142,18 @@ class _ReasonPageState extends State<ReasonPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '\$',
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w500,
+                              Transform.scale(
+                                scale: 1.4,
+                                child: Icon(
+                                  options[index]['icon'],
                                   color: selectedOptions[index]
                                       ? Colors.white
-                                      : const Color(0xFF000000),
+                                      : const Color.fromARGB(255, 0, 0, 0),
                                 ),
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 16),
                               Text(
-                                options[index],
+                                options[index]['text'],
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
@@ -168,7 +183,7 @@ class _ReasonPageState extends State<ReasonPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(16),
           ),
           child: const Text(
             'Continue',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/new_card.dart';
+import 'new_card.dart';
 import 'first.dart';
 
 class ChooseCardPage extends StatelessWidget {
@@ -131,7 +131,7 @@ class ChooseCardPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const Spacer(),
 
               // Second card
               GestureDetector(
@@ -248,7 +248,7 @@ class ChooseCardPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const Spacer(),
 
               // Third card
               GestureDetector(

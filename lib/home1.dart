@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/testView.dart';
+import 'testView.dart';
 import 'first.dart';
 
 void main() {
@@ -169,7 +169,6 @@ class TransactionsSection extends StatelessWidget {
   }
 }
 
-
 int _currentIndex = 0;
 
 class HomeOnePage extends StatefulWidget {
@@ -186,7 +185,13 @@ class _HomeOnePageState extends State<HomeOnePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              color: const Color(0xFF1DAB87),
+              // color: const Color(0xFF1DAB87),
+              decoration: BoxDecoration(
+                color: Color(0xFF1DAB87),
+                border: Border.all(
+                  color: Color(0xFF1DAB87),
+                ),
+              ),
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
@@ -215,8 +220,8 @@ class _HomeOnePageState extends State<HomeOnePage> {
                         ],
                       ),
                       SizedBox(
-                        width: 50,
-                        height: 50,
+                        width: 40,
+                        height: 40,
                         child: TextButton(
                           onPressed: () {
                             // Action to be performed when the icon is pressed
@@ -238,7 +243,6 @@ class _HomeOnePageState extends State<HomeOnePage> {
                           ),
                           child: Image.asset(
                             'assets/images/notification.png',
-                            height: 20,
                           ),
                         ),
                       ),
@@ -248,8 +252,11 @@ class _HomeOnePageState extends State<HomeOnePage> {
               ),
             ),
             Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Color(0xFF1DAB87),
+                border: Border.all(
+                  color: Color(0xFF1DAB87),
+                ),
               ),
               padding: const EdgeInsets.fromLTRB(34, 16, 34, 0),
               child: ConstrainedBox(
@@ -468,37 +475,25 @@ class _HomeOnePageState extends State<HomeOnePage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: _currentIndex == 0
-                  ? const Color(0xFF1D3A70)
-                  : const Color(0xFF6B7280),
+            icon: Image.asset(
+              'assets/images/icons/home.png',
+              height: 24,
             ),
             label: 'Home',
-            activeIcon: SizedBox(
-              width: 24,
+            activeIcon: Image.asset(
+              'assets/images/icons/home_active.png',
               height: 24,
-              child: Image.asset(
-                'assets/images/icons/home_icon.png',
-                color: const Color(0xFF1D3A70),
-              ),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.credit_card,
-              color: _currentIndex == 1
-                  ? const Color(0xFF1D3A70)
-                  : const Color(0xFF6B7280),
+            icon: Image.asset(
+              'assets/images/icons/card.png',
+              height: 24,
             ),
             label: 'My Card',
-            activeIcon: SizedBox(
-              width: 24,
+            activeIcon: Image.asset(
+              'assets/images/icons/card_active.png',
               height: 24,
-              child: Image.asset(
-                'assets/images/icons/card_icon.png',
-                color: const Color(0xFF1D3A70),
-              ),
             ),
           ),
           BottomNavigationBarItem(
@@ -507,8 +502,8 @@ class _HomeOnePageState extends State<HomeOnePage> {
               height: 56,
               decoration: BoxDecoration(
                 color: const Color(0xFF1DAB87),
-                boxShadow: [
-                  const BoxShadow(
+                boxShadow: const [
+                  BoxShadow(
                     color: Color.fromRGBO(10, 99, 117, 0.15),
                     offset: Offset(2, 8),
                     blurRadius: 20,
@@ -516,45 +511,37 @@ class _HomeOnePageState extends State<HomeOnePage> {
                 ],
                 borderRadius: BorderRadius.circular(28),
               ),
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
+              child: Image.asset(
+                'assets/images/icons/scan.png',
+                height: 24,
               ),
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notifications,
-              color: _currentIndex == 3
-                  ? const Color(0xFF1D3A70)
-                  : const Color(0xFF6B7280),
+            icon: Image.asset(
+              'assets/images/icons/activity.png',
+              height: 24,
             ),
             label: 'Activity',
             activeIcon: SizedBox(
               width: 24,
               height: 24,
               child: Image.asset(
-                'assets/images/icons/activity_icon.png',
-                color: const Color(0xFF1D3A70),
+                'assets/images/icons/activity_active.png',
+                height: 24,
               ),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: _currentIndex == 4
-                  ? const Color(0xFF1D3A70)
-                  : const Color(0xFF6B7280),
+            icon: Image.asset(
+              'assets/images/icons/user.png',
+              height: 24,
             ),
             label: 'Profile',
-            activeIcon: SizedBox(
-              width: 24,
+            activeIcon: Image.asset(
+              'assets/images/icons/user_active.png',
               height: 24,
-              child: Image.asset(
-                'assets/images/icons/profile_icon.png',
-                color: const Color(0xFF1D3A70),
-              ),
             ),
           ),
         ],
@@ -563,10 +550,13 @@ class _HomeOnePageState extends State<HomeOnePage> {
         unselectedItemColor:
             const Color(0xFF6B7280), // Set the unselected item text color
         selectedLabelStyle: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold), // Set the selected item text style
-        unselectedLabelStyle:
-            const TextStyle(fontSize: 14), // Set the unselected item text style
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+        ), // Set the selected item text style
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ), // Set the unselected item text style
       ),
     );
   }

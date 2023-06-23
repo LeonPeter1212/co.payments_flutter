@@ -70,7 +70,7 @@ class ChatPage extends StatelessWidget {
                   sender: Sender.User,
                 ),
                 ChatMessage(
-                  message: '...',
+                  message: '•••',
                   sender: Sender.Recipient,
                   // isTyping: true,
                 ),

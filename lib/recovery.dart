@@ -33,14 +33,6 @@ class _RecoveryPageState extends State<RecoveryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      //   leading: Padding(
-      //     padding: const EdgeInsets.all(4.0),
-      //     child: ,
-      //   ),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -116,32 +108,31 @@ class _RecoveryPageState extends State<RecoveryPage> {
                   return null;
                 },
               ),
+            
+            
+              const Spacer(),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _recoverPassword,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1D3A70),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    padding: const EdgeInsets.all(16),
+                  ),
+                  child: const Text(
+                    'Send recovery email',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
             ],
-          ),
-        ),
-      ),
-
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: _recoverPassword,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1D3A70),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              padding: const EdgeInsets.all(16),
-            ),
-            child: const Text(
-              'Send recovery email',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
           ),
         ),
       ),

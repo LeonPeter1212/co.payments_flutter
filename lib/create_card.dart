@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/choose_card.dart';
+import 'choose_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,11 +58,12 @@ class _FirstPageState extends State<CreateCardPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16.0,
-          vertical: 16.0,
+          // vertical: 16.0,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const Spacer(),
             Image.asset(
               'assets/images/home.png',
               width: 300,

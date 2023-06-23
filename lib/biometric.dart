@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'facial.dart';
-import 'first.dart';
 
 void main() {
   runApp(const MyApp());
@@ -73,19 +72,14 @@ class _BiometricAccessPageState extends State<BiometricAccessPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FirstPage(),
-                ),
-              );
+              Navigator.of(context).pop();
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
@@ -103,7 +97,9 @@ class _BiometricAccessPageState extends State<BiometricAccessPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
         child: Column(
           children: [
             const Text(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/home1.dart';
+import 'home1.dart';
 import 'first.dart';
 
 void main() {

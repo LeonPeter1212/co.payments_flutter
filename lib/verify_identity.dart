@@ -32,14 +32,6 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      //   leading: Padding(
-      //     padding: const EdgeInsets.all(4.0),
-      //     child: ,
-      //   ),
-      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -111,7 +103,7 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: Transform.scale(
-                          scale: .8, // Adjust the scale factor as needed
+                          scale: .8,
                           child: const Icon(
                             Icons.check,
                             color: Colors.white,
@@ -150,32 +142,30 @@ class _VerifyIdentityPageState extends State<VerifyIdentityPage> {
                   ],
                 ),
               ),
+            
+            const Spacer(),
+            SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _verifyThenContinue,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1D3A70),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    padding: const EdgeInsets.all(16),
+                  ),
+                  child: const Text(
+                    'Continue',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
             ],
-          ),
-        ),
-      ),
-
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: _verifyThenContinue,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1D3A70),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              padding: const EdgeInsets.all(16),
-            ),
-            child: const Text(
-              'Continue',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
           ),
         ),
       ),

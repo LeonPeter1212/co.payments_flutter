@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'first.dart';
 import 'signup.dart';
 import 'country.dart';
 import 'recovery.dart';
@@ -43,19 +42,14 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FirstPage(),
-                ),
-              );
+              Navigator.of(context).pop();
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,

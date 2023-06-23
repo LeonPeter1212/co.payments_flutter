@@ -67,7 +67,7 @@ class _FacialPageState extends State<FacialPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -97,8 +97,11 @@ class _FacialPageState extends State<FacialPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               'Let’s verify your identity',
@@ -146,7 +149,7 @@ class _FacialPageState extends State<FacialPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(16),
           ),
           child: const Text(
             'Verify Identity',

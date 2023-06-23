@@ -46,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -149,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
@@ -191,12 +191,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       // Invalid email format
                       return 'Please enter a valid email address';
                     }
-
-                    // You can add email validation logic here if needed
                     return null;
                   },
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -239,7 +237,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your password';
                     }
-                    // You can add password validation logic here if needed
                     return null;
                   },
                 ),
@@ -315,8 +312,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           image: AssetImage(
                             'assets/images/search.png',
                           ),
-                          height: 30,
-                          width: 30,
+                          height: 24,
+                          width: 24,
                         ),
                       ),
                     ),
@@ -339,8 +336,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           image: AssetImage(
                             'assets/images/apple.png',
                           ),
-                          height: 30,
-                          width: 30,
+                          height: 24,
+                          width: 24,
                         ),
                       ),
                     ),

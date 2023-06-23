@@ -36,13 +36,14 @@ class _SplashScreenState extends State<SplashScreen> {
     navigateToNextScreen();
   }
 
-  void navigateToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 2));
+  Future<void> navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 3));
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const FirstPage()),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,16 +100,53 @@ class _FirstPageState extends State<FirstPage> {
   final PageController _pageController = PageController();
   double _currentPage = 0;
 
-  List<Map<String, String>> slidePages = [
+  List<Map<String, dynamic>> slidePages = [
     {
       'image': 'assets/images/slide1.png',
-      'title': 'Finance app the safest and most trusted',
+      'title': RichText(
+        textAlign: TextAlign.center,
+        text: const TextSpan(
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF1D3A70),
+          ),
+          children: [
+            TextSpan(
+              text: 'Finance app ',
+              style: TextStyle(
+                color: Color(0xFF1D3A70),
+              ),
+            ),
+            TextSpan(
+              text: 'the safest and most ',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            TextSpan(
+              text: 'trusted',
+              style: TextStyle(
+                color: Color(0xFF1D3A70),
+              ),
+            ),
+          ],
+        ),
+      ),
       'description':
           'Your finance work starts here. We are here to help you track and deal with speeding up your transactions.',
     },
     {
       'image': 'assets/images/slide2.png',
-      'title': 'The fastest transaction process only here',
+      'title': const Text(
+        'The fastest transaction process only here',
+        style: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: Color(0xFF1D3A70),
+        ),
+        textAlign: TextAlign.center,
+      ),
       'description':
           'Get easy to pay all your bills with just a few steps. Paying your bills become fast and efficient.',
     },
@@ -124,7 +162,7 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         actions: [
           TextButton(
             onPressed: () {
@@ -166,30 +204,29 @@ class _FirstPageState extends State<FirstPage> {
                 itemCount: slidePages.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    color: Colors.white,
+                    // color: Colors.white,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          slidePages[index]['image']!,
-                          // width: 300,
+                          slidePages[index]['image'] as String,
                           height: 300,
                         ),
                         const SizedBox(height: 16),
                         Center(
-                          child: Text(
-                            slidePages[index]['title']!,
+                          child: DefaultTextStyle(
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF1D3A70),
                             ),
                             textAlign: TextAlign.center,
+                            child: slidePages[index]['title'] as Widget,
                           ),
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          slidePages[index]['description']!,
+                          slidePages[index]['description'] as String,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Color(0xFF6B7280),
@@ -206,8 +243,8 @@ class _FirstPageState extends State<FirstPage> {
               dotsCount: slidePages.length,
               position: _currentPage,
               decorator: DotsDecorator(
-                size: const Size.square(6.0),
-                activeSize: const Size(34.0, 6.0),
+                size: const Size.square(8.0),
+                activeSize: const Size(34.0, 8.0),
                 activeShape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3.0),
                 ),

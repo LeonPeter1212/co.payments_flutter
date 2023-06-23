@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'biometric.dart';
-import 'first.dart';
 
 class PinCodePage extends StatefulWidget {
   @override
@@ -15,18 +14,13 @@ class _PinCodePageState extends State<PinCodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FirstPage(),
-                ),
-              );
+              Navigator.of(context).pop();
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
@@ -44,7 +38,9 @@ class _PinCodePageState extends State<PinCodePage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+        ),
         child: Form(
           key: _formKey,
           child: Column(
@@ -75,21 +71,18 @@ class _PinCodePageState extends State<PinCodePage> {
                       children: List.generate(
                         5,
                         (index) {
-                          // final isCurrentField = enteredDigits.length == index;
                           final isFilledField = enteredDigits.length > index;
 
                           return Expanded(
                             child: Container(
-                              width: 40, // Adjust the width as desired
+                              width: 40,
                               height: 70,
                               margin: const EdgeInsets.symmetric(horizontal: 4),
                               decoration: const BoxDecoration(
-                                color: Color(
-                                    0xFFF9FAFB), // Change to the desired background color
+                                color: Color(0xFFF9FAFB),
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: Colors
-                                        .green, // Change to the desired border color
+                                    color: Colors.green,
                                     width: 1,
                                   ),
                                 ),
@@ -112,7 +105,7 @@ class _PinCodePageState extends State<PinCodePage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 60),
+              const Spacer(),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -219,7 +212,7 @@ class _PinCodePageState extends State<PinCodePage> {
                     ],
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -253,15 +246,14 @@ class NumberButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80, // Adjust the width as desired
-      height: 60, // Adjust the height as desired
-      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      height: 60,
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
           padding: const EdgeInsets.all(8),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(0), // Removed border radius
+            borderRadius: BorderRadius.circular(0),
           ),
           backgroundColor: Colors.white,
         ),

@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      initialRoute: '/first', // Set the initial route
-      routes: routes, // Define the routes// Display the SplashScreen initially
+      initialRoute: '/signin', // Set the initial route
+      routes: routes,
     );
   }
 }

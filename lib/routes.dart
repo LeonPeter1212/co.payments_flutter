@@ -18,7 +18,7 @@ import 'home1.dart';
 import 'testView.dart';
 
 final Map<String, WidgetBuilder> routes = {
-  '/first': (BuildContext context) => const FirstPage(),
+  '/first': (BuildContext context) => const SplashScreen(),
   '/signin': (BuildContext context) => SignInPage(),
   '/signup': (BuildContext context) => SignUpPage(),
   '/recovery': (BuildContext context) => RecoveryPage(),

@@ -1,6 +1,5 @@
+import 'signin.dart';
 import 'package:flutter/material.dart';
-import 'create_password.dart';
-import 'first.dart';
 
 class VerificationPage extends StatefulWidget {
   @override
@@ -15,18 +14,13 @@ class _VerificationPageState extends State<VerificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FirstPage(),
-                ),
-              );
+              Navigator.of(context).pop();
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
@@ -44,7 +38,7 @@ class _VerificationPageState extends State<VerificationPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -128,116 +122,113 @@ class _VerificationPageState extends State<VerificationPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Expanded(
-                flex: 1,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: _verificationCodeChecker,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF1D3A70),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          padding: const EdgeInsets.all(16),
+              const Spacer(),
+              Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _verificationCodeChecker,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF1D3A70),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        child: const Text(
-                          'Confirm',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
+                        padding: const EdgeInsets.all(16),
+                      ),
+                      child: const Text(
+                        'Confirm',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        for (int i = 1; i <= 3; i++)
-                          Expanded(
-                            child: NumberButton(
-                              number: i,
-                              onPressed: () {
-                                setState(() {
-                                  enteredDigits.add(i);
-                                });
-                              },
-                            ),
-                          ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        for (int i = 4; i <= 6; i++)
-                          Expanded(
-                            child: NumberButton(
-                              number: i,
-                              onPressed: () {
-                                setState(() {
-                                  enteredDigits.add(i);
-                                });
-                              },
-                            ),
-                          ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        for (int i = 7; i <= 9; i++)
-                          Expanded(
-                            child: NumberButton(
-                              number: i,
-                              onPressed: () {
-                                setState(() {
-                                  enteredDigits.add(i);
-                                });
-                              },
-                            ),
-                          ),
-                      ],
-                    ),
-                    Row(
-                      children: [
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      for (int i = 1; i <= 3; i++)
                         Expanded(
                           child: NumberButton(
-                            text: '*',
+                            number: i,
                             onPressed: () {
                               setState(() {
-                                enteredDigits.add(0);
+                                enteredDigits.add(i);
                               });
                             },
                           ),
                         ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      for (int i = 4; i <= 6; i++)
                         Expanded(
                           child: NumberButton(
-                            number: 0,
+                            number: i,
                             onPressed: () {
                               setState(() {
-                                enteredDigits.add(0);
+                                enteredDigits.add(i);
                               });
                             },
                           ),
                         ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      for (int i = 7; i <= 9; i++)
                         Expanded(
                           child: NumberButton(
-                            icon: Icons.backspace,
+                            number: i,
                             onPressed: () {
                               setState(() {
-                                if (enteredDigits.isNotEmpty) {
-                                  enteredDigits.removeLast();
-                                }
+                                enteredDigits.add(i);
                               });
                             },
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: NumberButton(
+                          text: '*',
+                          onPressed: () {
+                            setState(() {
+                              enteredDigits.add(0);
+                            });
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: NumberButton(
+                          number: 0,
+                          onPressed: () {
+                            setState(() {
+                              enteredDigits.add(0);
+                            });
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: NumberButton(
+                          icon: Icons.backspace,
+                          onPressed: () {
+                            setState(() {
+                              if (enteredDigits.isNotEmpty) {
+                                enteredDigits.removeLast();
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -250,7 +241,7 @@ class _VerificationPageState extends State<VerificationPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CreatePasswordPage(),
+        builder: (context) => SignInPage(),
       ),
     );
   }
@@ -277,12 +268,11 @@ class VerificationCodeInputField extends StatelessWidget {
 
           return Expanded(
             child: Container(
-              width: 40, // Adjust the width as desired
+              width: 40,
               height: 70,
               margin: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
-                color: const Color(
-                    0xFFF9FAFB), // Change to the desired background color
+                color: const Color(0xFFF9FAFB),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   color: isCurrentField ? Colors.black : Colors.transparent,
@@ -323,15 +313,14 @@ class NumberButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80, // Adjust the width as desired
-      height: 80, // Adjust the height as desired
-      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      height: 60,
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
           padding: const EdgeInsets.all(8),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(0),
           ),
           backgroundColor: Colors.white,
         ),
