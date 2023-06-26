@@ -57,12 +57,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
           child: TextButton(
             onPressed: () {
               // Action to be performed when the icon is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FirstPage(),
-                ),
-              );
+              Navigator.of(context).pop();
             },
             style: TextButton.styleFrom(
               backgroundColor: Colors.white,
@@ -219,7 +214,7 @@ class _createPasswordPageState extends State<CreatePasswordPage> {
                   ),
                 ),
               ),
-            const SizedBox(height: 16),
+              const SizedBox(height: 16),
             ],
           ),
         ),

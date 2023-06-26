@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      initialRoute: '/signin', // Set the initial route
+      initialRoute: '/first', // Set the initial route
       routes: routes,
     );
   }

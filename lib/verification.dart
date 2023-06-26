@@ -1,4 +1,4 @@
-import 'signin.dart';
+import 'package:CoPayments/create_password.dart';
 import 'package:flutter/material.dart';
 
 class VerificationPage extends StatefulWidget {
@@ -241,7 +241,7 @@ class _VerificationPageState extends State<VerificationPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SignInPage(),
+        builder: (context) => CreatePasswordPage(),
       ),
     );
   }
